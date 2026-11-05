@@ -1,0 +1,31 @@
+# Fails when plugins/techpool/ differs from what techpool-server's MCP catalog and
+# companion skill generate (techpool-server main, mcp/catalog + mcp/skill/techpool).
+# Runs on every push/PR and daily, because the server changes without touching
+# this repo. Fix: node scripts/generate.mjs --source <techpool-server>/mcp, commit.
+name: check-plugin
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '17 11 * * *'
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: guten-linux-light
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch techpool-server mcp/ (read-only)
+        env:
+          TOKEN: ${{ secrets.TECHPOOL_SERVER_READ_TOKEN }}
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse \
+            "https://oauth2:${TOKEN}@git.no-cows.com/techpool/techpool-server.git" /tmp/tps
+          git -C /tmp/tps sparse-checkout set mcp/catalog mcp/skill
+          git -C /tmp/tps log -1 --format='techpool-server %h %cs'
+      - name: Plugin matches the catalog
+        run: node scripts/generate.mjs --source /tmp/tps/mcp --check
+      - name: Claude validates plugin and marketplace
+        run: |
+          npx -y @anthropic-ai/claude-code@latest plugin validate plugins/techpool --strict
+          npx -y @anthropic-ai/claude-code@latest plugin validate .

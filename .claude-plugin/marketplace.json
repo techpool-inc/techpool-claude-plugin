@@ -1,0 +1,14 @@
+{
+  "name": "techpool",
+  "owner": { "name": "Techpool", "url": "https://techpool.tech" },
+  "metadata": {
+    "description": "Techpool's Claude plugin: the Techpool MCP connector plus a skill for field service work."
+  },
+  "plugins": [
+    {
+      "name": "techpool",
+      "source": "./plugins/techpool",
+      "description": "Missions, schedules, field work reports, timesheets, expenses, invoices and clients in Claude, through the Techpool connector."
+    }
+  ]
+}
