@@ -109,8 +109,8 @@ files.set(path.join('.claude-plugin', 'plugin.json'), JSON.stringify({
   version: `1.0.0+${catalogHash}`,
   description: 'Techpool field service operations in Claude: missions, schedules, field work reports, timesheets, expenses, invoices and clients, through the Techpool MCP connector. Your admin installs it once; every tech has it.',
   author: { name: 'Techpool', url: 'https://techpool.tech' },
-  homepage: 'https://techpool.tech/mcp',
-  repository: 'https://git.no-cows.com/techpool/techpool-claude-plugin',
+  homepage: 'https://www.techpool.tech/ai-apps',
+  repository: 'https://github.com/techpool-inc/techpool-claude-plugin',
   license: 'MIT',
   keywords: ['field-service', 'techpool', 'mcp', 'field-work-reports', 'timesheets', 'scheduling'],
 }, null, 2) + '\n');

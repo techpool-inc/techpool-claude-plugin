@@ -11,14 +11,14 @@ Your company needs the Techpool AI Apps add-on (Settings > AI Apps in Techpool).
 
 Your admin installs it once and every tech has it.
 
-1. Download `techpool.zip` from this repository's latest release.
+1. Download [techpool-claude-plugin.zip](https://www.techpool.tech/downloads/techpool-claude-plugin.zip).
 2. In Claude, open **Organization settings > Plugins & skills > Add > Upload a plugin** and choose the zip.
 3. Set **Default access** to **Installed by default**.
 
 ## Install for yourself (Claude Code)
 
 ```bash
-claude plugin marketplace add https://git.no-cows.com/techpool/techpool-claude-plugin.git
+claude plugin marketplace add techpool-inc/techpool-claude-plugin
 ```
 
 ```bash
@@ -32,3 +32,10 @@ claude plugin install techpool@techpool
 ```bash
 node scripts/generate.mjs --source ../techpool-server/mcp --zip dist/techpool.zip
 ```
+
+## Links
+
+- Documentation: https://www.techpool.tech/ai-apps
+- Privacy: https://www.techpool.tech/privacy
+- Terms: https://www.techpool.tech/terms
+- Support: https://www.techpool.tech/support

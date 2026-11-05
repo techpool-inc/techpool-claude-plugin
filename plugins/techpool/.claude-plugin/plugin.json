@@ -6,8 +6,8 @@
     "name": "Techpool",
     "url": "https://techpool.tech"
   },
-  "homepage": "https://techpool.tech/mcp",
-  "repository": "https://git.no-cows.com/techpool/techpool-claude-plugin",
+  "homepage": "https://www.techpool.tech/ai-apps",
+  "repository": "https://github.com/techpool-inc/techpool-claude-plugin",
   "license": "MIT",
   "keywords": [
     "field-service",
