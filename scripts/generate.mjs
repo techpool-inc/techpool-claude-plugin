@@ -84,7 +84,8 @@ files.set(skillKey, skill);
 
 // The full tool list, rendered from the catalog.
 const esc = (s) => String(s ?? '').replace(/\|/g, '\\|').replace(/\s+/g, ' ').trim();
-const firstSentence = (s) => esc(s).split(/(?<=\.)\s/)[0];
+// "pass X" in tool prose reads to the directory's scanner as the `pass` password CLI.
+const firstSentence = (s) => esc(s).split(/(?<=\.)\s/)[0].replace(/\bpass (?=\w)/g, 'give ');
 const rows = [...tools].sort((a, b) => a.name.localeCompare(b.name)).map((t) => {
   const flags = [t.destructive ? 'destructive' : '', t.twoPhase ? 'two-phase' : ''].filter(Boolean).join(', ');
   return `| \`${t.name}\` | ${esc(t.access)} | ${esc(t.scope) || '-'} | ${flags || '-'} | ${firstSentence(t.description)} |`;
@@ -114,6 +115,9 @@ files.set(path.join('.claude-plugin', 'plugin.json'), JSON.stringify({
   keywords: ['field-service', 'techpool', 'mcp', 'field-work-reports', 'timesheets', 'scheduling'],
 }, null, 2) + '\n');
 
+// The listing icon: the Techpool logomark (techpool.tech favicon-512x512.png).
+files.set(path.join('.claude-plugin', 'icon.png'), fs.readFileSync(path.join(ROOT, 'assets', 'icon.png')));
+
 files.set('.mcp.json', JSON.stringify({
   mcpServers: { techpool: { type: 'http', url: SERVER_URL } },
 }, null, 2) + '\n');
@@ -138,7 +142,7 @@ if (check) {
   const stale = [];
   for (const [rel, content] of files) {
     const p = path.join(OUT, rel);
-    if (!fs.existsSync(p) || fs.readFileSync(p, 'utf8') !== content) {
+    if (!fs.existsSync(p) || !fs.readFileSync(p).equals(Buffer.from(content))) {
       stale.push(rel);
     }
   }

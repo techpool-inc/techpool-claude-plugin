@@ -45,7 +45,7 @@ Two-phase tools return a preview first and change nothing until the user says ye
 | `books_home` | read | books:read | - | Cash position, month cash flow, job margin snapshot, and close checklist for the company Books dashboard. |
 | `books_import_bank_csv` | write | books:categorize | destructive | Import transactions CSV into a bank account (books:categorize). |
 | `books_invite_financial_support` | write | books:manage | destructive | Invite a CPA / Financial Support seat (books:manage). |
-| `books_job_margin` | read | books:read | - | Job margin rows sorted by margin; pass missionId to read one job. |
+| `books_job_margin` | read | books:read | - | Job margin rows sorted by margin; give missionId to read one job. |
 | `books_journal_entry` | read | books:read | - | One journal entry: header, lines, and its source document (invoice, bill, expense, payroll run, bank line, import or manual). |
 | `books_list_bank_accounts` | read | books:read | - | List manual and linked bank accounts. |
 | `books_list_bills` | read | books:read | - | Open and paid bills. |
