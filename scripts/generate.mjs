@@ -115,6 +115,19 @@ files.set(path.join('.claude-plugin', 'plugin.json'), JSON.stringify({
   keywords: ['field-service', 'techpool', 'mcp', 'field-work-reports', 'timesheets', 'scheduling'],
 }, null, 2) + '\n');
 
+files.set('README.md', [
+  `<!-- ${GENERATED} -->`,
+  '# Techpool',
+  '',
+  'Field service operations in Claude: missions, schedules, field work reports, timesheets, expenses, invoices and clients. Installs the Techpool connector (`' + SERVER_URL + '`) and the techpool skill. Your company needs the Techpool AI Apps add-on; each person signs in to Techpool once.',
+  '',
+  '- Documentation: https://www.techpool.tech/ai-apps',
+  '- Privacy: https://www.techpool.tech/privacy',
+  '- Terms: https://www.techpool.tech/terms',
+  '- Support: https://www.techpool.tech/support',
+  '',
+].join('\n'));
+
 // The listing icon: the Techpool logomark (techpool.tech favicon-512x512.png).
 files.set(path.join('.claude-plugin', 'icon.png'), fs.readFileSync(path.join(ROOT, 'assets', 'icon.png')));
 
