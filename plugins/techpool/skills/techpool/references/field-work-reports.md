@@ -41,6 +41,20 @@ Change one thing per call, then read the report again if you need the new ids.
 
 `publish_field_work_report` is two-phase and may notify the client. Call it with `reportId`, show the user the preview and say plainly that the client may be notified, and publish only on an explicit yes.
 
+## Unpublish, delete, attachments
+
+`unpublish_field_work_report` (hides the report from the client and returns it to draft), `delete_field_work_report` (report, sections, blocks and attachments) and `delete_field_work_report_attachment` are two-phase. Show the user the preview, say plainly what is lost, and confirm only on an explicit yes. A delete cannot be undone.
+
+## Share link and audience
+
+`get_field_work_report_share` reads the public link; `create_field_work_report_share` makes one (or returns the existing one) and sends nothing. `revoke_field_work_report_share` is two-phase: links already sent stop working.
+
+`list_field_work_report_audience` shows who receives the report and whether the list is the report's own or the mission's. It carries emails, so it needs `fwr:write`. `add_field_work_report_audience_member` (the first add copies the mission list across) and `remove_field_work_report_audience_member` change only this report.
+
+## Version and trace
+
+`get_field_work_report_version` is a cheap `{ id, updatedAt, status }` marker: poll it instead of re-reading the report. `get_field_work_report_trace` links each open item to the earlier report that first mentioned it.
+
 ## Comments and reviews
 
 `list_field_work_report_comments` and `create_field_work_report_comment` use the same thread the Techpool editor shows; a new comment may notify the other people on the report. `list_field_work_report_reviews` and `create_field_work_report_review` hold the one-to-five star reviews, one per member per report. Listing and adding comments and reviews need only `fwr:read`.

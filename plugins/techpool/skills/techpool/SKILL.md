@@ -2,8 +2,8 @@
 name: techpool
 description: Work in a company's Techpool account (field service operations) through the Techpool MCP server. Use when the user asks about field work reports or service reports, timesheets and hours, technicians, missions, bookings and schedules, or clients, contacts, notes and proposals in Techpool, or asks you to draft, edit, publish, approve or look up any of them. Skip it when the question is not about the user's Techpool data.
 metadata:
-  tool_count: "212"
-  catalog_hash: "1381980cacc7"
+  tool_count: "271"
+  catalog_hash: "3359409819a1"
   server_url: "https://mcp.techpool.tech/mcp"
   version: "1"
 ---
@@ -17,6 +17,8 @@ The connected server's own tool list always wins. If this skill names a tool the
 ## Start every session with `whoami`
 
 Call `whoami` once before anything else. It returns the user, the company, their role and the scopes this connection was granted. Everything you can see or change is limited to that company, that role and those scopes.
+
+To see what the AI did through this connection, call `list_my_ai_activity`: the connected user's own AI tool calls in this company over the last 30 days, newest first (tool, AI app, ok/failed, duration, time — never arguments or record contents).
 
 If the Techpool tools are not available at all, the server is not connected. Tell the user how to connect: `npx techpool-mcp setup` for Claude Code, Cursor, Codex and Gemini CLI; in Claude or ChatGPT, add `https://mcp.techpool.tech/mcp` as a custom connector. The company needs the Techpool MCP add-on.
 
@@ -51,10 +53,16 @@ If the Techpool tools are not available at all, the server is not connected. Tel
 | Read, draft, edit or publish a field work report | `list_field_work_reports` | [references/field-work-reports.md](references/field-work-reports.md) |
 | Review hours, or approve or reject timesheets | `list_timesheets` | [references/timesheets.md](references/timesheets.md) |
 | Look up or update a client, contact or note | `list_clients` | [references/clients.md](references/clients.md) |
-| See who is working where and when | `get_schedule` with `from` and `to` | `list_missions`, `get_mission` |
+| Finish or reopen a mission, or manage its files | `get_mission` | `finish_mission`, `reopen_mission` (preview, then confirm), `list_mission_attachments`, `attach_mission_file`, `delete_mission_attachment` |
+| Edit, delete or re-route a field capture or its files | `create_field_capture` for new ones | `update_field_capture`, `delete_field_capture`, `delete_field_capture_file` (preview, then confirm), `resolve_field_capture_routing` |
+| See who is working where and when | `get_schedule` with `from` and `to` | [references/schedule.md](references/schedule.md) — booking changes too: book, move, split, change status |
+| Book, move, split or change the status of a booking | `get_schedule` or `quick_create_booking` | [references/schedule.md](references/schedule.md) |
 | List, inspect or summarize expense receipts | `list_expenses` | `get_expense`, `summarize_expenses` for grouped totals |
+| Scan a receipt, or file many expenses at once | `scan_receipt` | `bulk_create_expenses` (two-phase, up to 50; echo `scanId`) |
+| Expense totals for one member, mission or client | `get_expense_analytics_by_mission` | `get_expense_analytics_by_member`, `get_expense_analytics_by_client` |
 | Categorize bank lines, bills, payroll, or post journals in Techpool Books | `books_bank_lines` or `books_list_bills` | [references/books.md](references/books.md) |
 | List or issue client invoices, finance analytics, or approve hours/expenses | `list_invoices` or `approvals_inbox` | [references/finance.md](references/finance.md) |
+| Look up, draft, send or amend an employment or vendor contract | `list_contracts` or `get_contract` | [references/contracts.md](references/contracts.md) |
 
 Read only the reference file for the job in front of you. Every tool, with its access and permission, is listed in [references/tool-catalog.md](references/tool-catalog.md).
 
