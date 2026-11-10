@@ -2,8 +2,8 @@
 name: techpool
 description: Work in a company's Techpool account (field service operations) through the Techpool MCP server. Use when the user asks about field work reports or service reports, timesheets and hours, technicians, missions, bookings and schedules, or clients, contacts, notes and proposals in Techpool, or asks you to draft, edit, publish, approve or look up any of them. Skip it when the question is not about the user's Techpool data.
 metadata:
-  tool_count: "271"
-  catalog_hash: "3359409819a1"
+  tool_count: "266"
+  catalog_hash: "8969fc4d912c"
   server_url: "https://mcp.techpool.tech/mcp"
   version: "1"
 ---

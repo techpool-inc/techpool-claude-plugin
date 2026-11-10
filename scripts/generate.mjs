@@ -45,10 +45,14 @@ for (const p of [catalogPath, path.join(skillSrc, 'SKILL.md')]) {
 }
 
 const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-const { toolCount, catalogHash, tools } = catalog;
-if (typeof toolCount !== 'number' || typeof catalogHash !== 'string' || !Array.isArray(tools)) {
+const { catalogHash } = catalog;
+if (typeof catalog.toolCount !== 'number' || typeof catalogHash !== 'string' || !Array.isArray(catalog.tools)) {
   fail('tools.json lacks toolCount/catalogHash/tools');
 }
+// Dark-launched tools (darkLaunch: "<ENV_FLAG>") are registered only when their flag is on, and it is
+// off in every real environment. The plugin advertises none of them: not in tool lists, not in tool_count.
+const tools = catalog.tools.filter((t) => !t.darkLaunch);
+const toolCount = tools.length;
 
 // Every generated file, as relative path -> content.
 const files = new Map();
