@@ -24,6 +24,17 @@ All four are two-phase: `approve_timesheet`, `reject_timesheet` (optional `reaso
 
 When the user asks to "approve everything for last week", list the week completely first, show the list with totals, and approve one timesheet at a time. Stop and report at the first one that is rejected by Techpool or comes back with an unknown outcome.
 
+## Bulk and settlement actions
+
+- `bulk_approve_day_time_reports` / `bulk_reject_day_time_reports` take `dayReportIds` (up to 500, from `list_day_time_reports`); reject needs a `reason`. Both are two-phase. The result lists `approved`/`rejected` and `failed` with a reason per id; report the failed ones to the user, do not retry them blindly.
+- `approve_all_pending_days` approves every submitted day on one `timesheetId` (two-phase).
+- `set_day_external_settlement` marks one day as settled outside Techpool (`settled: true`, optional `reason`) or clears it (`settled: false`), so invoicing never re-prices those hours. Reversible, not two-phase; confirm with the user first anyway.
+
+## Hours by mission
+
+- `get_timesheets_by_mission` (`from`, `to`) gives hours per mission for a period.
+- `get_mission_timesheet_drilldown` (`missionId`, optional `memberId`, `from`, `to`, `unbilledOnly`) gives one mission's day-level hours by technician. `unbilledOnly: true` leaves out hours already invoiced or settled outside Techpool.
+
 ## Submit or correct hours
 
 - `submit_timesheet` creates a week or adds days to an existing one: `startDate`, `endDate` (at most eight days from the start) and `dayReports`.
