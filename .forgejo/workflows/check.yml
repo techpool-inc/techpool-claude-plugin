@@ -1,11 +1,14 @@
+# CI POLICY (Daniel, 2026-11-13): /Users/seekstromd/Library/CloudStorage/Dropbox-Ekstroem/Daniel Ekstroem/GutenOS/Context/Guten_Group/it/CI-POLICY-2026-11-13.md
+# A PR push runs nothing here (this repo has no `fast` lane).
+# Never add a heavy job to pull_request or a required heavy check without Daniel's written word in the policy file. No new runners.
 # Fails when plugins/techpool/ differs from what techpool-server's MCP catalog and
 # companion skill generate (techpool-server main, mcp/catalog + mcp/skill/techpool).
-# Runs on every push/PR and daily, because the server changes without touching
-# this repo. Fix: node scripts/generate.mjs --source <techpool-server>/mcp, commit.
+# Runs on push to main, daily and on dispatch (CI policy 2026-11-13: nothing runs on a PR push),
+# because the server changes without touching this repo. Fix: node scripts/generate.mjs --source <techpool-server>/mcp, commit.
 name: check-plugin
 on:
   push:
-  pull_request:
+    branches: [main]
   schedule:
     - cron: '17 11 * * *'
   workflow_dispatch:
