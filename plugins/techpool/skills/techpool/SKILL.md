@@ -2,8 +2,8 @@
 name: techpool
 description: Work in a company's Techpool account (field service operations) through the Techpool MCP server. Use when the user asks about field work reports or service reports, timesheets and hours, technicians, missions, bookings and schedules, or clients, contacts, notes and proposals in Techpool, or asks you to draft, edit, publish, approve or look up any of them. Skip it when the question is not about the user's Techpool data.
 metadata:
-  tool_count: "266"
-  catalog_hash: "8969fc4d912c"
+  tool_count: "271"
+  catalog_hash: "874a83025002"
   server_url: "https://mcp.techpool.tech/mcp"
   version: "1"
 ---
@@ -54,6 +54,7 @@ If the Techpool tools are not available at all, the server is not connected. Tel
 | Review hours, or approve or reject timesheets | `list_timesheets` | [references/timesheets.md](references/timesheets.md) |
 | Look up or update a client, contact or note | `list_clients` | [references/clients.md](references/clients.md) |
 | Finish or reopen a mission, or manage its files | `get_mission` | `finish_mission`, `reopen_mission` (preview, then confirm), `list_mission_attachments`, `attach_mission_file`, `delete_mission_attachment` |
+| See field captures on a job or a day ("today on the Cowbolt job") | `list_field_captures` with `missionId` and `from`/`to` | `get_field_capture` for full text, transcript and file metadata |
 | Edit, delete or re-route a field capture or its files | `create_field_capture` for new ones | `update_field_capture`, `delete_field_capture`, `delete_field_capture_file` (preview, then confirm), `resolve_field_capture_routing` |
 | See who is working where and when | `get_schedule` with `from` and `to` | [references/schedule.md](references/schedule.md) — booking changes too: book, move, split, change status |
 | Book, move, split or change the status of a booking | `get_schedule` or `quick_create_booking` | [references/schedule.md](references/schedule.md) |

@@ -8,7 +8,8 @@ Finance tools use `invoicing:read`, `invoicing:manage`, and `analytics:read` on 
 |---|---|---|
 | List / get invoices | `list_invoices`, `get_invoice`, `list_invoice_payments` | `invoicing:read` |
 | Approved unbilled work | `list_approved_unbilled_work` | `invoicing:read` |
-| Create draft | `create_invoice` (builder preview → persist with `send=false`) | `invoicing:manage` |
+| Preview before creating | `build_invoice_preview` (prices from mission work, saves nothing), `get_period_work_summary` (who worked on the mission in the period) | `invoicing:read` |
+| Create draft | `create_invoice` (builder preview → persist with `send=false`; this is the draft tool, call `build_invoice_preview` first and show the user the totals) | `invoicing:manage` |
 | Edit draft | `update_draft_invoice` (rebuild + persist; refuses sent invoices) | `invoicing:manage` |
 | Delete draft | `delete_draft_invoice` (two-phase; releases billed hours/expenses) | `invoicing:manage` |
 | Issue draft | `send_invoice` (two-phase: number + Sent + email) | `invoicing:manage` |
@@ -20,6 +21,8 @@ Finance tools use `invoicing:read`, `invoicing:manage`, and `analytics:read` on 
 | Accounting credit memo retry | `create_credit_memo` (Refunded + already pushed) | `invoicing:manage` |
 | Invoice PDF | `get_invoice_pdf` (base64) | `invoicing:read` |
 | Bill run reconciliation | `get_bill_run_reconciliation` (optional `before` YYYY-MM-DD) | `invoicing:read` |
+
+`mark_invoice_unpaid` and `release_invoice_funds` are dark-launched: the server only registers them when `MCP_MONEY_REVERSAL_TOOLS_ENABLED=true` (default off), so they may be absent from tools/list.
 
 Amounts are integer minor units. Office finance access only (`invoicing:read` / `invoicing:manage`), not field invoicing.
 
