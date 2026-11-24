@@ -1,6 +1,6 @@
 {
   "name": "techpool",
-  "version": "1.0.0+874a83025002",
+  "version": "1.0.0+3db8a3f2cd9c",
   "description": "Techpool field service operations in Claude: missions, schedules, field work reports, timesheets, expenses, invoices and clients, through the Techpool MCP connector. Your admin installs it once; every tech has it.",
   "author": {
     "name": "Techpool",

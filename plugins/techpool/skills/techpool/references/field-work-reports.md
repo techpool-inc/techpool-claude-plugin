@@ -57,7 +57,9 @@ Change one thing per call, then read the report again if you need the new ids.
 
 ## Comments and reviews
 
-`list_field_work_report_comments` and `create_field_work_report_comment` use the same thread the Techpool editor shows; a new comment may notify the other people on the report. `list_field_work_report_reviews` and `create_field_work_report_review` hold the one-to-five star reviews, one per member per report. Listing and adding comments and reviews need only `fwr:read`.
+`list_field_work_report_comments` and `create_field_work_report_comment` use the same thread the Techpool editor shows; a new comment may notify the other people on the report. `update_field_work_report_comment` and `delete_field_work_report_comment` edit or remove comments under the same author and moderation rules as the app; delete is two-phase.
+
+`list_field_work_report_reviews` and `create_field_work_report_review` hold the one-to-five star reviews, one per member per report. `update_field_work_report_review` and `delete_field_work_report_review` change or remove your own review; delete is two-phase. Listing, adding, editing and deleting comments and reviews need only `fwr:read`.
 
 ## Templates
 

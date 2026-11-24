@@ -2,6 +2,12 @@
 
 Books tools need the matching `books:*` scope on the grant. Read tools use `books:read`. Writes use narrower scopes (`books:categorize`, `books:journal`, `books:close`, `books:export`, `books:coa`, `books:manage`).
 
+## Billing recipients (Desk)
+
+Use `books_billing_recipients` with a client id to read the approved billing list. Legacy clients fall back to `client.email`. The tool is read-only and sends no email.
+
+Desk recipient changes use a `billing_email_update` proposal through the shared proposals engine. Each new address must have exactly the domain of an existing client contact; look-alikes and subdomains do not count. A permitted person other than the requester approves, then previews and confirms the client update. Bots cannot approve. The company must explicitly enable Desk and its proposal action; they default off. Never use an ordinary client update to bypass this approval flow.
+
 ## Common write paths
 
 | Job | Tool | Scope |

@@ -10,6 +10,9 @@ Contract tools use `contracts:read` and `contracts:write` on the grant.
 | List contracts | `list_contracts` | `contracts:read` |
 | Get a contract (terms, rate lines, signers, status, amendments) | `get_contract` | `contracts:read` |
 | Per-signer signing status | `get_contract_signing_status` | `contracts:read` |
+| Contract PDF (base64) | `get_contract_pdf` | `contracts:read` |
+| Amendment PDF (base64) | `get_contract_amendment_pdf` | `contracts:read` |
+| Amendment per-signer signing status | `get_contract_amendment_signing_status` | `contracts:read` |
 | Create a draft | `create_contract_draft` | `contracts:write` |
 | Update a draft | `update_contract` | `contracts:write` |
 | Import a draft from an uploaded file | `import_contract_from_file` | `contracts:write` |
