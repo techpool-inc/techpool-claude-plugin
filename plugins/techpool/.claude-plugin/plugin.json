@@ -6,6 +6,8 @@
     "name": "Techpool",
     "url": "https://techpool.tech"
   },
+  "icon": "./.claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://www.techpool.tech/privacy",
   "homepage": "https://www.techpool.tech/ai-apps",
   "repository": "https://github.com/techpool-inc/techpool-claude-plugin",
   "license": "MIT",
